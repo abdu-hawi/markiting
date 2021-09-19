@@ -38,65 +38,6 @@
                     </tr>
                 @endforeach
 
-                {{--
-
-                @foreach($companies as $index => $company)
-                    <tr>
-                        <td>
-                            @if($editQualificationsIndex !== $index)
-                                {!! $qualification['name_ar'] !!}
-                            @else
-                                <input
-                                    @click.away="$wire.editQualificationField === '{!! $index !!}.name_ar ? wire.saveQualification({!! $index !!}) : null"
-                                    type="text" class="form-control {!!  $errors->has('qualifications.'.$index.'.name_ar') ? 'is-invalid' : '' !!}"
-                                    wire:model.defer="qualifications.{!! $index !!}.name_ar"
-                                    wire:model.debounce.500ms="qualifications.{!! $index !!}.name_ar">
-                                @error('qualifications.'.$index.'.name_ar') <span class="error text-danger">{{ $message }}</span> @enderror
-                            @endif
-                        </td>
-                        <td>
-                            @if($editQualificationsIndex !== $index)
-                                {!! $qualification['name_en'] !!}
-                            @else
-                                <input
-                                    @click.away="$wire.editQualificationField === '{!! $index !!}.name_en ? wire.saveQualification({!! $index !!}) : null"
-                                    type="text" class="form-control {!!  $errors->has('qualifications.'.$index.'.name_en') ? 'is-invalid' : '' !!}"
-                                    wire:model.defer="qualifications.{!! $index !!}.name_en"
-                                    wire:model.debounce.500ms="qualifications.{!! $index !!}.name_en">
-                                @error('qualifications.'.$index.'.name_en') <span class="error text-danger">{{ $message }}</span> @enderror
-                            @endif
-                        </td>
-                        <td class="text-center">
-                            @if($editQualificationsIndex !== $index)
-                                <button class="btn btn-primary btn-xs" wire:click.prevent="editQualification({!! $index !!})">Edit</button>
-                            @else
-                                <button class="btn btn-outline-primary btn-xs" wire:click.prevent="saveQualification({!! $index !!})">Save</button>
-                            @endif
-                        </td>
-                        <td class="text-center">
-                            <button class="btn btn-danger btn-xs" data-toggle="modal" data-target="#deleteModal{!! $index !!}">Delete</button>
-                        </td>
-                    </tr>
-                    {{-- delete modal -}}
-                    <div class="modal fade" id="deleteModal{!! $index !!}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                        <div class="modal-dialog" role="document">
-                            <div class="modal-content">
-                                <div class="modal-body">
-                                    Are you sure you want delete <b class="text-red"> {!! $qualification['name_en'] !!}</b> ?
-                                </div>
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                    <button type="button"
-                                            class="btn btn-danger"
-                                            wire:click.prevent="deleteQualification({!! $qualification['id'] !!})"
-                                            data-dismiss="modal">Delete</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                @endforeach
-
-                --}}
                 </tbody>
             </table>
         </div>

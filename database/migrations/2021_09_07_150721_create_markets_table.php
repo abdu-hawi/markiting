@@ -18,7 +18,7 @@ class CreateMarketsTable extends Migration
             $table->string('name');
 //            $table->foreignId('role_market_id')->constrained();
             $table->string('email')->unique();
-            $table->string('password')->nullable();
+            $table->string('password');
             $table->bigInteger("mobile");
             $table->boolean("isActive")->default(false);
             $table->enum("type",["market","company","sales"]);

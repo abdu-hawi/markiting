@@ -3,12 +3,17 @@
 namespace App\Http\Livewire\Market;
 
 //use App\Models\City;
+use App\Mail\AddNewCompany;
 use App\Models\Company;
 //use App\Models\Country;
 use App\Models\Geolocation;
 use App\Models\User;
+use Carbon\Carbon;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Str;
 use Livewire\Component;
 
 class AddCompany extends Component{
@@ -121,11 +126,15 @@ class AddCompany extends Component{
 
     public function addCompany(){
         $this->validate();
+        $password = Str::random(8);
         $user = User::query()->insertGetId([
             'type'=>'company',
             'name'=>$this->name,
+            'password'=> Hash::make($password),
             'email'=>$this->email,
             'mobile'=>$this->mobile,
+            'created_at' => Carbon::now(),
+            'updated_at' => Carbon::now()
             ]);
         Company::query()->create([
             'market_id'=> $user,
@@ -137,7 +146,10 @@ class AddCompany extends Component{
             'amount_type'=> $this->amount_type,
             'amount'=> $this->amount,
             'sales_owed'=> $this->sales_owed,
+            'created_at' => Carbon::now(),
+            'updated_at' => Carbon::now()
         ]);
+        Mail::to($this->email)->send(New AddNewCompany(['email' => $this->email, 'password' => $password]));
         $this->reset();
         $this->emit("companyAdded");
     }

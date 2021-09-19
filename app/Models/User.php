@@ -71,6 +71,6 @@ class User extends Authenticatable
     ];
 
     public function companies():HasMany{
-        return $this->hasMany(Company::class, 'market_id', 'id');
+        return $this->hasMany(Company::class, 'id', 'market_id');
     }
 }
