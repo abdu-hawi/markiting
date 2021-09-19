@@ -26,7 +26,7 @@
                     </div>
                     <select class="custom-select form-control" name="city_id" wire:model="selectedCity">
                         <option value="" selected>فضلا اختر المدينة</option>
-                        @foreach($cities as $city)
+                        @foreach(App\Models\City::query()->where('locale','ar')->join('cities','cities.id','=','city_translations.city_id')->where('country_id',1)->get() as $city)
                             <option value="{!! $city->id !!}">{!! $city->name !!}</option>
                         @endforeach
                     </select>
@@ -58,7 +58,7 @@
 {{--                <div class="input-group-prepend">--}}
                     <span class="input-group-prepend input-group-text" id="basic-addon1">+966</span>
 {{--                </div>--}}
-                <input type="text" class="form-control {!!  $errors->has('mobile') ? 'is-invalid' : '' !!}"
+                <input type="tel" class="form-control {!!  $errors->has('mobile') ? 'is-invalid' : '' !!}"
                        placeholder="رقم الجوال"
                        wire:model="mobile"
                        wire:model.debounce.500ms="mobile">

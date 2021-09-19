@@ -12,6 +12,8 @@ class CompanyLivewire extends Component{
     public $editCompaniesIndex = null;
     public $editCompaniesField = null;
 
+    protected $listeners = ['companyAdded' => 'mount'];
+
     public function mount(){
         $this->companies = Company::query()->latest()
             ->with(['user', 'city'])

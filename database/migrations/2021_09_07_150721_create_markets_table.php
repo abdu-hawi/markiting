@@ -20,7 +20,7 @@ class CreateMarketsTable extends Migration
             $table->string('email')->unique();
             $table->string('password')->nullable();
             $table->bigInteger("mobile");
-            $table->boolean("isActive")->default(true);
+            $table->boolean("isActive")->default(false);
             $table->enum("type",["market","company","sales"]);
             $table->timestamp('email_verified_at')->nullable();
             $table->rememberToken();

@@ -2,9 +2,9 @@
 
 namespace App\Http\Livewire\Market;
 
-use App\Models\City;
+//use App\Models\City;
 use App\Models\Company;
-use App\Models\Country;
+//use App\Models\Country;
 use App\Models\Geolocation;
 use App\Models\User;
 use Illuminate\Support\Facades\Cache;
@@ -29,11 +29,11 @@ class AddCompany extends Component{
     public $amount_type;
     public $amount;
     public $sales_owed;
-    public $our_owed;
+//    public $our_owed;
 
-    public function mount(){
-        $this->cities = City::query()->where('locale','ar')->get();
-    }
+//    public function mount(){
+//        $this->cities = City::query()->where('locale','ar')->get();
+//    }
 
     protected $rules = [
         'name' => 'required|string|unique:markets,name',
@@ -68,29 +68,32 @@ class AddCompany extends Component{
         return view('livewire.market.add-company');
     }
 
-//    public function updated($field){
-//        $market = ['name','email'];
-//        $this->validate([
-//            $field => 'string|unique:markets,'.$field
-//        ]);
-//    }
-
-
     public function updatedSelectedCity($city){
         $this->selectedCity = $city;
         if (!is_null($city)) {
             $this->geolocations = Geolocation::where('city_id', $city)->get();
         }
     }
+
     public function updatedSalesOwed($percent){
+        $this->checkValue();
+    }
+    public function updatedAmountType($type){
+        if (!is_null($this->amount) && !is_null($this->sales_owed))
+            $this->checkValue();
+    }
+    public function updatedAmount($type){
+        if (!is_null($this->amount_type) && !is_null($this->sales_owed))
+            $this->checkValue();
+    }
+
+    private function checkValue(){
         $this->validate([
             'amount_type' => 'required|in:percent,fixed',
             'amount' => 'required|numeric',
             'sales_owed' => 'required|numeric',
         ]);
-        $this->our_owed = (100 - $percent). " %" ;
 
-//        $this->packagesOwed = $this->packages;
         foreach ($this->packages as $i => $package){
 
             $price = $this->packages[$i]['price'];
@@ -112,30 +115,30 @@ class AddCompany extends Component{
                 $our_owed = 100 - $this->sales_owed;
                 $this->packagesOwed[$i]['our_owed'] = $our_owed;
                 $this->packagesOwed[$i]['our_price'] = $price_after_discount * $our_owed / 100;
-
-//                $priceSales = $price - $this->sales_owed;
-//                $priceOur = $price - $priceSales;
-//                $this->packagesOwed[$i]['amount'] = $this->amount;
-//                $this->packagesOwed[$i]['amount_type'] = $this->amount_type;
-//                $this->packagesOwed[$i]['sales_owed'] = $price - $this->sales_owed;
-//                $this->packagesOwed[$i]['priceSales'] = $priceSales;
-//                $this->packagesOwed[$i]['priceOur'] = $priceOur;
-
-//                $this->packagesOwed[$i]['price_sales'] = $this->sales_owed;
             }
         }
-
-//        public $amount_type;
-//        public $amount;
-//        public $sales_owed;
-//        public $our_owed;
     }
 
     public function addCompany(){
-        $user = User::query()->insertGetId($this->validate()+['type'=>'company']);
-        dd($user);
-        Company::query()->create($this->validate()+['market_id'=> $user->id]);
-//        $this->name = "";
-//        $this->emit("qualificationAdded");
+        $this->validate();
+        $user = User::query()->insertGetId([
+            'type'=>'company',
+            'name'=>$this->name,
+            'email'=>$this->email,
+            'mobile'=>$this->mobile,
+            ]);
+        Company::query()->create([
+            'market_id'=> $user,
+            'country_id'=> 1,
+            'city_id'=> $this->selectedCity,
+            'geolocation_id'=> $this->selectedGeolocation,
+            'company_code'=> $this->company_code,
+            'expire_date'=> $this->expire_date,
+            'amount_type'=> $this->amount_type,
+            'amount'=> $this->amount,
+            'sales_owed'=> $this->sales_owed,
+        ]);
+        $this->reset();
+        $this->emit("companyAdded");
     }
 }
