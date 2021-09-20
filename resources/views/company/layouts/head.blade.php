@@ -9,7 +9,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
 
-    <title>{!! 'منصة إس'.$title ?? 'Market' !!}</title>
+    <title>{!! 'منصة إس - '.$title ?? 'Market' !!}</title>
 
     <link rel="icon" href="{!! asset('favicon.ico') !!}" type="image/x-icon">
 

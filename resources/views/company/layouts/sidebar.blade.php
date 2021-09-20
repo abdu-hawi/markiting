@@ -23,9 +23,15 @@
                      with font-awesome or any other icon font library -->
 
                 <li class="nav-item">
-                    <a href="{!! route('market.home') !!}" class="nav-link {!! active_menu('dashboard')[0] !!}">
+                    <a href="{!! route('company.home') !!}" class="nav-link {!! active_menu('dashboard')[0] !!}">
                         <i class="nav-icon fas fa-tachometer-alt"></i>
                         <p>{!! trans('market.sidebar.Dashboard') !!}</p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="{!! route('company.salesmen') !!}" class="nav-link {!! active_menu('salesmen')[0] !!}">
+                        <i class="nav-icon fas fa-comments-dollar"></i>
+                        <p>{!! trans('market.company.Salesmen') !!}</p>
                     </a>
                 </li>
 {{--                <li class="nav-item">--}}

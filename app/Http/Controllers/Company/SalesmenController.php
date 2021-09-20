@@ -9,7 +9,7 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Redirector;
 
-class HomeController extends Controller
+class SalesmenController extends Controller
 {
     /**
      * Create a new controller instance.
@@ -29,10 +29,6 @@ class HomeController extends Controller
     public function index(){
         if( is_null(auth()->user()->email_verified_at) )  return redirect(route('company.active')) ;
         if (!auth()->user()->isActive) abort(403);
-        return view('company.home', ['title' => trans('market.sidebar.Dashboard')]);
-    }
-
-    public function active(){
-        return view('company.active');
+        return view('company.salesmen', ['title' => trans('market.company.Salesmen')]);
     }
 }
