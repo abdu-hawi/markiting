@@ -2,7 +2,7 @@
 
 namespace Database\Seeders;
 
-use App\Models\salesman;
+use App\Models\Salesman;
 use Illuminate\Database\Seeder;
 
 class SalesmanSeeder extends Seeder
@@ -14,6 +14,6 @@ class SalesmanSeeder extends Seeder
      */
     public function run()
     {
-        salesman::factory()->count(297)->create();
+        Salesman::factory()->count(297)->create();
     }
 }

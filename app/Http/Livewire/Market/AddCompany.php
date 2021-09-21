@@ -146,8 +146,6 @@ class AddCompany extends Component{
             'amount_type'=> $this->amount_type,
             'amount'=> $this->amount,
             'sales_owed'=> $this->sales_owed,
-            'created_at' => Carbon::now(),
-            'updated_at' => Carbon::now()
         ]);
         Mail::to($this->email)->send(New AddNewCompany(['email' => $this->email, 'password' => $password]));
         $this->reset();

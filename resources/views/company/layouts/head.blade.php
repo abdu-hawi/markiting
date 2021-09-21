@@ -27,7 +27,13 @@ scratch. This page gets rid of all links and provides the needed markup only.
 {{--    <link rel="stylesheet" href="{!! asset('/design/dist/css/dashboard-style-ar.css') !!}">--}}
     <!-- Google Font: Source Sans Pro -->
     <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
-{{--    @livewireStyles--}}
+    @livewireStyles
+    <link href='https://fonts.googleapis.com/css?family=Cairo' rel='stylesheet'>
+    <style>
+        body {
+            font-family: 'Cairo';
+        }
+    </style>
 </head>
 <body class="hold-transition sidebar-mini">
 <div class="wrapper">

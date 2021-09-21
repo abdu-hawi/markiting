@@ -34,6 +34,8 @@
                         <!-- /.card-header -->
                         <div class="card-body">
 
+                            <livewire:company.add-salesmen />
+                            <livewire:company.salesmen-livewire />
                         </div>
                         <!-- /.card-body -->
                     </div>

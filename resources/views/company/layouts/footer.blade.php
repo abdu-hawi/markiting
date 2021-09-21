@@ -22,6 +22,6 @@
 <script src="{!! asset('/design/dist/js/adminlte.min.js') !!}"></script>
 
 @stack('scripts')
-{{--    @livewireScripts--}}
+    @livewireScripts
 </body>
 </html>

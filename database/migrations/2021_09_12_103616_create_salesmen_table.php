@@ -18,6 +18,7 @@ class CreateSalesmenTable extends Migration
             $table->foreignId("market_id")->constrained();
             $table->foreignId("company_id")->constrained();
             $table->string("code",6);
+            $table->softDeletes();
             $table->timestamps();
         });
     }
