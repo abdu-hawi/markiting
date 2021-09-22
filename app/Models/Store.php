@@ -12,8 +12,7 @@ class Store extends Model
 
     protected $table = 'stores';
 
-    public function salesman(): BelongsToMany
-    {
+    public function salesman(): BelongsToMany{
         return $this->belongsToMany(Salesman::class);
     }
 }

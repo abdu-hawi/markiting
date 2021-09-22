@@ -33,6 +33,6 @@ class Salesman extends Model
 
     public function store(): BelongsToMany
     {
-        return $this->belongsToMany(Store::class);
+        return $this->belongsToMany(Store::class, 'salesman_store' ,'salesman_id', 'store_id');
     }
 }

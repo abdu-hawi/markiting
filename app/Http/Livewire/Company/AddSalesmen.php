@@ -4,7 +4,7 @@ namespace App\Http\Livewire\Company;
 
 use App\Mail\AddNewCompany;
 use App\Models\Company;
-use App\Models\salesman;
+use App\Models\Salesman;
 use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Hash;
@@ -29,6 +29,7 @@ class AddSalesmen extends Component
 
     public function render()
     {
+//        dd(Company::query()->where('market_id',auth()->id())->first());
         $this->company_code = (Company::query()->where('market_id',auth()->id())->first())->company_code;
         return view('livewire.company.add-salesmen');
     }
@@ -54,7 +55,7 @@ class AddSalesmen extends Component
             'created_at' => Carbon::now(),
             'updated_at' => Carbon::now()
         ]);
-        salesman::query()->create([
+        Salesman::query()->create([
             'market_id'=> $user,
             'company_id'=> auth()->id(),
             'code'=> $this->full_code,
