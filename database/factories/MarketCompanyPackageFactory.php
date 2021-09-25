@@ -22,7 +22,7 @@ class MarketCompanyPackageFactory extends Factory
     public function definition()
     {
         return [
-            'company_id' => rand(1,17),
+            'company_id' => rand(2,32),
             'package_id' => rand(7,16),
         ];
     }

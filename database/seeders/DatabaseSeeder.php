@@ -13,13 +13,19 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-//        $this->call(GeolocationSeeder::class);
+
 //        \App\Models\User::factory(20)->create();
 ////        $this->call(RoleSeeder::class);
-//        $this->call(CompanySeeder::class);
-//        $this->call(SalesmanSeeder::class);
+//
+//
 //        $this->call(MarketCompanyPackageSeeder::class);
 //        $this->call(SalesmanStoreSeeder::class);
-        $this->call(FixSalesmanSeeder::class);
+//        $this->call(FixSalesmanSeeder::class);
+
+//        $this->call(GeolocationSeeder::class);
+//        $this->call(UserSeeder::class);
+//        $this->call(CompanySeeder::class);
+        $this->call(SalesmanSeeder::class);
+        $this->call(MarketCompanyPackageSeeder::class);
     }
 }
