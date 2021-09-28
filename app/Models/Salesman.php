@@ -33,6 +33,7 @@ class Salesman extends Model
 
     public function store(): BelongsToMany
     {
-        return $this->belongsToMany(Store::class, 'salesman_store' ,'salesman_id', 'store_id');
+        return $this->belongsToMany(Store::class, 'salesman_store' ,'salesman_id', 'store_id')
+            ->withPivot(['package_id','isStorePay','package_data']);
     }
 }

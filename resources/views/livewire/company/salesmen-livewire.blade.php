@@ -26,6 +26,19 @@
                     <tr>
                         <td>{!! $salesman['user']['name'] !!}</td>
                         <td class="text-center">{!! $salesman['code'] !!}</td>
+                        <td class="text-center">{!! $salesman['store_count'] !!}</td>
+                        <td class="text-center">
+                            @foreach($salesman['store'] as $store)
+                                <table>
+                                    <tr>
+                                        <th>اسم الباقة</th>
+                                        <th>المدفوعة</th>
+                                        <th>الغير مدفوعة</th>
+                                    </tr>
+                                </table>
+                            @endforeach
+                        </td>
+                        <td class="text-center">{!! $salesman->user->isActive ? '<button class="btn btn-success btn-xs">مفعل</button>' : '<button class="btn btn-danger btn-xs">غير مفعل</button>' !!}</td>
 {{--                        <td class="text-center  {!! $company['amount_type'] == 'fixed' ? 'bg-gradient-pink' : 'bg-primary' !!}">{!! $company['amount_type'] == 'fixed' ? 'مقطوعة' : 'نسبة مئوية' !!}</td>--}}
 {{--                        <td class="text-center">{!! $company['amount'] !!}</td>--}}
 {{--                        <td class="text-center">{!! $company['sales_owed'] !!}</td>--}}
