@@ -31,7 +31,7 @@ class Salesman extends Model
         return $this->belongsTo(Company::class, 'company_id', 'id');
     }
 
-    public function store(): BelongsToMany
+    public function stores(): BelongsToMany
     {
         return $this->belongsToMany(Store::class, 'salesman_store' ,'salesman_id', 'store_id')
             ->withPivot(['package_id','isStorePay','package_data']);

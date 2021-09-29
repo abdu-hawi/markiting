@@ -13,6 +13,7 @@ class Store extends Model
     protected $table = 'stores';
 
     public function salesman(): BelongsToMany{
-        return $this->belongsToMany(Salesman::class);
+        return $this->belongsToMany(Salesman::class, 'salesman_store' , 'store_id','salesman_id')
+            ->withPivot(['package_id','isStorePay','package_data']);
     }
 }
