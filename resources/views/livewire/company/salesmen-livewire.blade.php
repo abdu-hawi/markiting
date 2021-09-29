@@ -39,24 +39,23 @@
 {{--                            @endforeach--}}
 
 
-                            @foreach($salesman->stores as $store)
-                                @php
-                                    $name = json_decode($store->pivot->package_data)->name
-                                @endphp
-                            @endforeach
+{{--                            @foreach($salesman->stores as $store)--}}
+{{--                                @php--}}
+{{--                                    $name = json_decode($store->pivot->package_data)->name--}}
+{{--                                @endphp--}}
+{{--                            @endforeach--}}
 
 
-                            {{--
-                            <table class="table-primary w-100">
+
+                            <table class="table-secondary w-100">
                                 @foreach($salesman->stores as $store)
                                     <tr>
                                         <td>{!! json_decode($store->pivot->package_data)->name !!}</td>
-                                        <td>{!! isset($package['paid']) ?? $package['paid']  !!}</td>
-                                        <td>الغير مدفوعة</td>
+                                        <td>عدد المتاجر المدفوعة (5)</td>
+                                        <td> (6) الغير مدفوعة</td>
                                     </tr>
                                 @endforeach
                             </table>
-                            --}}
 
                         </td>
                         <td class="text-center">{!! $salesman->user->isActive ? '<button class="btn btn-success btn-xs">مفعل</button>' : '<button class="btn btn-danger btn-xs">غير مفعل</button>' !!}</td>
